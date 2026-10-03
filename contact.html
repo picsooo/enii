@@ -11,16 +11,18 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<header class="hdr">
+<div class="mock-strip"><svg class="picto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 15V9l2.5 4L12 9l2.5 4L17 9v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span><b>Maquette réalisée par Webminds</b> · ce n’est pas le site officiel d’ENICAB</span></div><header class="hdr">
   <div class="wrap">
     <a class="hdr-logo" href="index.html"><img src="assets/img/logo.svg" alt="ENICAB" width="235" height="50"></a>
     <nav class="hdr-nav" aria-label="Navigation principale">
-      <a href="index.html">Accueil</a><a href="gamme.html">Gamme</a><a href="produit.html">Câble solaire</a><a href="gamme.html#calcul">Calculateur</a><a href="contact.html" aria-current="page">Contact</a>
+      <a href="index.html" class="dev" title="Page développée dans la maquette">Accueil</a><a href="#" class="nodev" data-nodev title="Page non incluse dans la maquette">À propos</a><a href="gamme.html" class="dev" title="Page développée dans la maquette">Gamme</a><a href="produit-h07v.html" class="dev" title="Page développée dans la maquette">Fiches produits</a><a href="gamme.html#calcul" class="dev" title="Page développée dans la maquette">Calculateur</a><a href="#" class="nodev" data-nodev title="Page non incluse dans la maquette">Actualités</a><a href="contact.html" class="dev" aria-current="page" title="Page développée dans la maquette">Contact</a>
+      <span class="nav-key"><i></i>Page développée dans la maquette</span>
       <a class="btn btn-amber" href="contact.html#devis">Demander un devis</a>
     </nav>
     <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </header>
+<div class="toast" role="status" aria-live="polite"></div>
 
 <main>
 <section class="page-hd"><div class="wrap"><div class="crumb"><a href="index.html">Accueil</a> / Contact</div><h1>Contact et devis</h1><p class="lead" style="margin-top:14px">Une question sur un câble, un prix, un délai&nbsp;: votre commercial régional vous répond.</p></div></section>
@@ -75,7 +77,7 @@
   </div>
 </footer>
 <a class="vpill" href="v2/index.html"><i></i>Découvrir la version moderne</a>
-<div class="demo-bar"><b>Maquette de démonstration réalisée par Webminds</b> · aucun formulaire n’est enregistré</div>
+<div class="demo-bar"><svg class="picto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 15V9l2.5 4L12 9l2.5 4L17 9v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span><b>Maquette réalisée par Webminds</b> · site non officiel · aucun formulaire n’est enregistré</span></div>
 <script src="assets/js/cable.js"></script>
 <script src="assets/js/main.js"></script>
 </body>

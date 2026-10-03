@@ -1,4 +1,7 @@
 (function () {
+  var ms = document.querySelector('.mock-strip');
+  function sh() { if (ms) document.documentElement.style.setProperty('--strip', ms.offsetHeight + 'px'); }
+  sh(); window.addEventListener('resize', sh);
   var NS = 'http://www.w3.org/2000/svg';
   function el(t, a, p) { var e = document.createElementNS(NS, t); for (var k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; }
   function cl(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }

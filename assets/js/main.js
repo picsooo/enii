@@ -3,6 +3,7 @@
   var hdr = document.querySelector('.hdr'), bg = document.querySelector('.burger');
   if (bg) bg.addEventListener('click', function () {
     var o = hdr.classList.toggle('open'); bg.setAttribute('aria-expanded', o);
+    var nv = hdr.querySelector('.hdr-nav'); if (nv) { var bt = hdr.getBoundingClientRect().bottom; nv.style.top = bt + 'px'; nv.style.maxHeight = (window.innerHeight - bt) + 'px'; }
   });
 
   // coupes de câble
@@ -12,6 +13,16 @@
   });
 
   document.querySelectorAll('[data-side]').forEach(function (svg) { Cable.side(svg, svg.getAttribute('data-side')); });
+
+  // pages non incluses dans la maquette
+  var toast = document.querySelector('.toast'), tt;
+  document.querySelectorAll('[data-nodev]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault(); if (!toast) return;
+      toast.textContent = 'Page non incluse dans la maquette';
+      toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('show'); }, 2200);
+    });
+  });
 
   // formulaires factices
   document.querySelectorAll('form[data-fake]').forEach(function (f) {
