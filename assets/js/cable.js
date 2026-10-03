@@ -125,5 +125,44 @@ window.Cable = (function () {
     }
     return t;
   }
-  return { render: render, types: TYPES };
+
+  /* vue de profil dénudée, pour les cartes de gamme */
+  var SIDE = {
+    dom: [[16, 'cu'], [30, '#2C6FB0']],
+    ind: [[10, 'cu'], [20, '#7B4A2A'], [44, '#1F2A2C']],
+    bt:  [[10, 'cu'], [18, '#8C9294'], [40, '#2A2E2F']],
+    mt:  [[14, 'cu'], [18, '#343B3C'], [36, '#ECEFEC'], [40, '#343B3C'], [44, 'scr'], [52, '#8E2B22']],
+    ht:  [[18, 'cu'], [22, '#343B3C'], [44, '#ECEFEC'], [48, '#343B3C'], [52, 'scr'], [60, '#1F2A2C']],
+    nus: [[30, 'al']],
+    sol: [[14, 'cu'], [28, '#E4E6E2'], [38, '#1F2A2C']],
+    sec: [[10, 'cu'], [20, '#C9CFCC'], [42, '#3E8E3A']],
+    rail:[[22, 'cu']],
+    tel: [[6, 'cu'], [14, '#2C6FB0'], [34, '#8C9294']]
+  };
+  function side(svg, type) {
+    var L = SIDE[type]; if (!L) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var W = 320, H = 80, CY = 40, n = L.length;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var id = 's' + (++uid), defs = el('defs', {}, svg);
+    function lg(name, stops, rot) { var g = el('linearGradient', { id: id + name, x1: 0, y1: 0, x2: 0, y2: 1 }, defs); stops.forEach(function (s) { el('stop', { offset: s[0], 'stop-color': s[1] }, g); }); }
+    lg('cu', [['0', '#8A4521'], ['.3', '#F2BE8E'], ['.55', '#D08A55'], ['1', '#6E3A1A']]);
+    lg('al', [['0', '#6F7779'], ['.3', '#F1F4F4'], ['.6', '#B9C1C2'], ['1', '#5E6668']]);
+    lg('sh', [['0', 'rgba(0,0,0,.3)'], ['.3', 'rgba(255,255,255,.18)'], ['.6', 'rgba(0,0,0,0)'], ['1', 'rgba(0,0,0,.4)']]);
+    var sp = el('pattern', { id: id + 'scr', width: 6, height: 60, patternUnits: 'userSpaceOnUse', patternTransform: 'skewX(30)' }, defs);
+    el('rect', { width: 6, height: 60, fill: '#2a3133' }, sp); el('rect', { width: 3.4, height: 60, fill: '#C9884F' }, sp);
+    var st = el('pattern', { id: id + 'tw', width: 9, height: 60, patternUnits: 'userSpaceOnUse', patternTransform: 'skewX(-35)' }, defs);
+    el('rect', { width: 9, height: 60, fill: 'rgba(0,0,0,0)' }, st); el('line', { x1: 0, y1: 0, x2: 0, y2: 60, stroke: 'rgba(60,30,10,.45)', 'stroke-width': 1.2 }, st);
+    var x0 = 14, step = (W * 0.62) / Math.max(n - 1, 1);
+    L.forEach(function (ly, i) {
+      var h = ly[0], f = ly[1], x = n === 1 ? x0 : x0 + i * step;
+      var fill = f === 'cu' ? 'url(#' + id + 'cu)' : f === 'al' ? 'url(#' + id + 'al)' : f === 'scr' ? 'url(#' + id + 'scr)' : f;
+      el('rect', { x: x, y: CY - h / 2, width: W - x + 10, height: h, fill: fill }, svg);
+      if (f === 'cu' || f === 'al') el('rect', { x: x, y: CY - h / 2, width: W - x + 10, height: h, fill: 'url(#' + id + 'tw)' }, svg);
+      el('rect', { x: x, y: CY - h / 2, width: W - x + 10, height: h, fill: 'url(#' + id + 'sh)' }, svg);
+      var face = f === 'cu' ? '#B8693A' : f === 'al' ? '#9AA3A5' : f === 'scr' ? '#6B4A33' : f;
+      el('ellipse', { cx: x, cy: CY, rx: Math.max(h * .16, 2), ry: h / 2, fill: face, style: 'filter:brightness(.82)' }, svg);
+    });
+  }
+  return { render: render, side: side, types: TYPES };
 })();

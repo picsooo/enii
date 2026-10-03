@@ -11,6 +11,8 @@
     Cable.render(svg, svg.getAttribute('data-cable'), lg ? document.getElementById(lg) : null);
   });
 
+  document.querySelectorAll('[data-side]').forEach(function (svg) { Cable.side(svg, svg.getAttribute('data-side')); });
+
   // formulaires factices
   document.querySelectorAll('form[data-fake]').forEach(function (f) {
     f.addEventListener('submit', function (e) {
@@ -26,7 +28,7 @@
     var b = e.target.closest('button'); if (!b) return;
     fl.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
     var f = b.dataset.f;
-    document.querySelectorAll('.range-row[data-cat]').forEach(function (r) {
+    document.querySelectorAll('.pcard[data-cat]').forEach(function (r) {
       r.hidden = !(f === 'all' || r.dataset.cat.split(' ').indexOf(f) > -1);
     });
   });
