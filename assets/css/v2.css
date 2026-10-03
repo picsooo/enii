@@ -156,3 +156,10 @@ p{margin:0 0 1em}
 .feat img{width:100%;border-radius:18px}
 .feat h2{margin-bottom:16px}
 @media (max-width:860px){.feat-g{grid-template-columns:1fr;gap:22px}}
+/* v1.2 : gamme en liste verticale sur mobile */
+.vcard svg{background:radial-gradient(ellipse at 30% 50%,rgba(214,138,82,.14),transparent 70%);border-radius:10px;padding:10px 0}
+@media (max-width:760px){
+  .rail{flex-direction:column;overflow:visible;scroll-snap-type:none;padding:24px 20px 0}
+  .vcard{flex:none;width:100%}
+  .vcard b{font-size:28px}
+}

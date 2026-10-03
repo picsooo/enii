@@ -254,3 +254,11 @@ a.range-row:hover{background:var(--teal-l)}
 .chips{display:flex;flex-wrap:wrap;gap:10px}
 .chips span{font-family:var(--cond);font-weight:600;font-size:22px;padding:10px 18px;border-radius:999px;background:var(--teal-l);color:var(--slate-d)}
 .hero-photo .xlegend i{box-shadow:0 0 0 1.5px rgba(255,255,255,.5)}
+/* v1.2 : un produit par ligne sur mobile, cartes plus riches */
+.pcard .side{background:linear-gradient(135deg,#1E2D30,#2C4A4F);border-radius:6px;padding:18px 10px;box-sizing:border-box}
+@media (max-width:560px){
+  .cards{grid-template-columns:1fr;gap:12px}
+  .pcard{padding:14px 14px 18px}
+  .pcard .side{padding:22px 12px;margin-bottom:14px}
+  .pcard h3{font-size:24px}.pcard .volt{font-size:17px}.pcard p{font-size:15px}
+}
