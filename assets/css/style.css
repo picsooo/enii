@@ -295,3 +295,51 @@ a.range-row:hover{background:var(--teal-l)}
 .toast{position:fixed;left:50%;bottom:110px;transform:translate(-50%,20px);background:#1E2D30;color:#fff;font-size:14px;padding:10px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:.25s;z-index:95;white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.fp-badge::before{animation:none}}
+/* ===== cartes électriques (partagé) ===== */
+.ecards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.ecard{position:relative;display:flex;flex-direction:column;border-radius:20px;overflow:hidden;text-decoration:none;color:#E8F2F0;background:linear-gradient(160deg,#173236 0%,#0E1F22 100%);border:1px solid rgba(63,240,224,.18);box-shadow:0 20px 40px -24px rgba(0,40,45,.6);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s;isolation:isolate}
+.ecard::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(120deg,transparent 30%,rgba(63,240,224,.9) 45%,rgba(255,194,61,.9) 55%,transparent 70%) 0 0/250% 100%;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none;animation:edge 3s linear infinite}
+@keyframes edge{to{background-position:-250% 0}}
+.ecard:hover{transform:translateY(-6px);border-color:rgba(63,240,224,.5);box-shadow:0 30px 60px -20px rgba(63,240,224,.35)}
+.ecard:hover::after{opacity:1}
+.ecard-vis{position:relative;height:210px;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 55%,rgba(63,240,224,.16),transparent 65%),repeating-linear-gradient(90deg,rgba(63,240,224,.06) 0 1px,transparent 1px 28px),repeating-linear-gradient(0deg,rgba(63,240,224,.06) 0 1px,transparent 1px 28px)}
+.cab{position:relative;width:100%;padding:0 0 0 0}
+.cab .side{width:108%;max-width:none;height:auto;margin-left:-2%;filter:drop-shadow(0 10px 18px rgba(0,0,0,.55));background:none!important;padding:0!important;transition:transform .5s}
+.ecard:hover .cab .side{transform:translateX(-14px)}
+.spark{position:absolute;left:0;top:50%;width:90px;height:8px;margin-top:-4px;border-radius:8px;background:linear-gradient(90deg,transparent,#3FF0E0 40%,#FFF 50%,#FFC23D 60%,transparent);filter:blur(1.5px);box-shadow:0 0 18px 4px rgba(63,240,224,.6);mix-blend-mode:screen;animation:spark 2.6s cubic-bezier(.5,0,.3,1) infinite}
+@keyframes spark{0%{transform:translateX(-120px);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateX(560px);opacity:0}}
+.ecard:nth-child(2n) .spark{animation-delay:.9s}.ecard:nth-child(3n) .spark{animation-delay:1.6s}
+.ecard-body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ecard .volt{font-family:var(--cond);font-weight:700;font-size:30px;line-height:1;color:#3FF0E0;text-shadow:0 0 18px rgba(63,240,224,.55)}
+.ecard h3{font-family:var(--cond);font-weight:700;font-size:32px;line-height:1.02;color:#fff;margin:2px 0 4px}
+.ecard p{margin:0;color:#9FB8B5;font-size:15.5px;max-width:42ch}
+.ecard-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;padding-top:16px}
+.ecard .norm em{font-style:normal;font-size:12px;font-weight:600;border:1px solid rgba(63,240,224,.3);color:#BFEFEA;border-radius:999px;padding:3px 9px;margin-right:4px}
+.ecard .go{font-weight:600;font-size:14px;color:#FFC23D;white-space:nowrap}
+.ecard.has-fiche{border-color:rgba(255,194,61,.45)}
+.ecard .fp-badge{position:absolute;top:14px;right:14px;z-index:3}
+/* secteurs néon */
+.scards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.scard{border-radius:18px;overflow:hidden;background:linear-gradient(160deg,#173236,#0E1F22);border:1px solid rgba(63,240,224,.16);color:#E8F2F0;padding-bottom:20px;transition:transform .35s,box-shadow .35s}
+.scard:hover{transform:translateY(-5px);box-shadow:0 24px 50px -20px rgba(63,240,224,.35)}
+.scard-vis{height:170px;display:flex;align-items:center;justify-content:center;padding:14px 10px 0;background:radial-gradient(ellipse at 50% 70%,rgba(63,240,224,.14),transparent 70%)}
+.neon{width:100%;height:100%;filter:drop-shadow(0 0 4px rgba(63,240,224,.8)) drop-shadow(0 0 12px rgba(63,240,224,.35))}
+.neon .flow{stroke-dasharray:6 10;animation:flow 1.2s linear infinite;filter:drop-shadow(0 0 6px rgba(255,194,61,.9))}
+@keyframes flow{to{stroke-dashoffset:-32}}
+.neon .flame,.neon .sun,.neon .wave{animation:glow 1.8s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(255,194,61,.9))}
+@keyframes glow{50%{opacity:.45}}
+.scard h3{font-family:var(--cond);font-weight:700;font-size:25px;line-height:1.05;color:#fff;margin:14px 18px 4px}
+.scard p{margin:0 18px;color:#9FB8B5;font-size:14.5px}
+@media (max-width:1000px){.scards{grid-template-columns:repeat(3,1fr)}}
+/* mobile : carrousel horizontal de grandes cartes */
+@media (max-width:760px){
+  .ecards,.scards{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:6px 20px 18px;scroll-padding-left:20px;scrollbar-width:none}
+  .ecards::-webkit-scrollbar,.scards::-webkit-scrollbar{display:none}
+  .ecard{flex:0 0 86%;scroll-snap-align:start}
+  .scard{flex:0 0 72%;scroll-snap-align:start}
+  .ecard-vis{height:180px}
+  .ecard h3{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){.spark,.ecard::after,.neon .flow,.neon .flame,.neon .sun,.neon .wave{animation:none}}
+.swipe-hint{display:none;font-size:13px;color:var(--muted,#93AEAB);margin:-6px 0 12px}
+@media (max-width:760px){.swipe-hint{display:block}}

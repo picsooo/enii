@@ -39,7 +39,7 @@
     var b = e.target.closest('button'); if (!b) return;
     fl.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
     var f = b.dataset.f;
-    document.querySelectorAll('.pcard[data-cat]').forEach(function (r) {
+    document.querySelectorAll('.ecard[data-cat]').forEach(function (r) {
       r.hidden = !(f === 'all' || r.dataset.cat.split(' ').indexOf(f) > -1);
     });
   });
